@@ -1,4 +1,4 @@
-7 Control
+7 Kontrol
 
 # Çalan Sesleri Kontrol Etme
 
