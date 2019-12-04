@@ -2,15 +2,11 @@
 
 # Synths
 
-OK, enough of the intros - let's get into some sound.
+Tamam, artık hafiften başlayalım.
 
-In this section we'll cover the basics of triggering and manipulating
-synths. Synth is short for synthesiser which is a fancy word for
-something which creates sounds. Typically synths are quite complicated
-to use - especially analog synths such as Eurorack modules connected
-together by a mess of wires. However, Sonic Pi gives you much of that
-power in a very simple and approachable manner.
+Bu bölümde sentezler olarak adlandırdığımız özelliklere giriş yapacağız. Sentezlerin kullanımı biraz zordur ve ingilizcede "Synth" olarak 
+görebilirsin. Synth kelimesi Synthesizer kelimesine kısaltma olarak kullanılır, çünkü daha havalı duruyor :) Fakat korkma, Sonic Pi 
+üzerinde hepsi bu kılavuz ile beraber kolay gelecek.
 
-Don't be fooled by the immediate simplicity of Sonic Pi's interface. You
-can get very deep into very sophisticated sound manipulation if that's
-your thing. Hold on to your hats...
+Ama Sonic Pi uygulamasının kolay görünen anayüzü seni yanıltmasın. Uygulama ile inebileceğin derinliğin sınırı yok. O yüzden sıkı
+tutunun...
