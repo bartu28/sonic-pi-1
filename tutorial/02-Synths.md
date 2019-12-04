@@ -1,4 +1,4 @@
-2 Synths
+2 Sentezler
 
 # Sentezleyici
 
