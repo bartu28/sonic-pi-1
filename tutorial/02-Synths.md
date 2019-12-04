@@ -1,6 +1,6 @@
 2 Synths
 
-# Synths
+# Sentezleyici
 
 Tamam, artık hafiften başlayalım.
 
