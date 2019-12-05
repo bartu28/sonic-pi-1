@@ -1,37 +1,41 @@
-4 Randomisation
+4 Rasgeleleştirme
 
-# Randomisation
+# Rastgeleleştirme
 
+Müziğinizi ilgi çekici yapma yollarından biri de bazı rastgele sayılar
+kullanmaktır. Sonic Pi, müziğinize rastgele sayılar koymanızı sağlayan
+fonksiyonlar bulundurur, ama bunu kullanmaya başlamadan önce sizi şok
+edebilecek bir gerçek: Sonic Pi ’de *rasgele tamamen rastgele değil*.
+Ama bu ne demek oluyor? Tamam, bir göz atalım.
 A great way to add some interest into your music is using some random
 numbers. Sonic Pi has some great functionality for adding randomness to
 your music, but before we start we need to learn a shocking truth: in
 Sonic Pi *random is not truly random*. What on earth does this mean?
 Well, let's see.
 
-## Repeatability
+## Tekrarlanabilirlik
 
-A really useful random function is `rrand` which will give you a random
-value between two numbers - a *min* and a *max*. (`rrand` is short for
-ranged random). Let's try playing a random note:
+`rrand` fonksiyonu çok işlevsel bir rasgele fonksiyonudur. Bu fonksiyon
+2 değer arasında rastgele bir değer verir. Bir minimum min ve bir
+maksimum max. (rrand rasgele için bir kısaltmadır). Şimdiki değer
+arasında rasgele bir nota çalmayı deneyelim:
 
 ```
 play rrand(50, 95)
 ```
 
-Ooh, it played a random note. It played note `83.7527`. A nice random
-note between 50 and 95. Woah, wait, did I just predict the exact random
-note you got too? Something fishy is going on here. Try running the code
-again. What? It chose `83.7527` again? That can't be random!
+Vay canına! Rasgele bir nota çaldı!`83.7527` notasını çaldı. 50 ve 95
+arasında güzel rasgele bir nota... Vay canına. Bir saniye, az önce
+senin de aldığın rasgele nota aynı mı? Burada bir gariplik var. Kodu
+tekrar dene. Ne? tekrar 83.7527? Bu rasgele olamaz!
 
-The answer is that it is not truly random, it's pseudo-random. Sonic Pi
-will give you random-like numbers in a repeatable manner. This is very
-useful for ensuring that the music you create on your machine sounds
-identical on everybody else's machine - even if you use some randomness
-in your composition.
+Cevap şudur ki bu rasgele değil, bu pseudo-random(“random” rasgele
+demek). Sonic Pi sana rasgele bir numarayı tekrarlanabilir bir şekilde
+verir. Bu senin kodladığın bir müziği herkesin aynı şekilde dinlemesini
+sağlar. Rasgele bir değer kullanmış olsan bile.
 
-Of course, in a given piece of music, if it 'randomly' chose `83.7527`
-every time, then it wouldn't be very interesting. However, it
-doesn't. Try the following:
+Tabiki eğer ‘rasgele’ bir şey her zaman `83.7527` olacaksa bu ilgi çekici
+olmaz. Neyseki bu bunun için geçerli değil:
 
 ```
 loop do
@@ -40,6 +44,10 @@ loop do
 end 
 ```
 
+Evet! Sonunda rasgele bir şey. *run* içindeki bir rasgele fonksiyonu hep
+rasgele değerler vermeye değer verir. Ama bir sonraki çalıştırmada
+yine aynı değerleri verir ve aynı duyulur. Bu her "run" tuşuna
+bastığımızda zamanda geri gidip tekrar basmışız gibi olur.
 Yes! It finally sounds random. Within a given *run* subsequent calls
 to random functions will return random values. However, the next run
 will produce exactly the same sequence of random values and sound
@@ -47,11 +55,10 @@ exactly the same. It's as if all Sonic Pi code went back in time to
 exactly the same point every time the Run button was pressed. It's the
 Groundhog Day of music synthesis!
 
-## Haunted Bells
+## Lanetli Ziller
 
-A lovely illustration of randomisation in action is the haunted bells
-example which loops the `:perc_bell` sample with a random rate and sleep
-time between bell sounds:
+Rasgeleleştirmenin güzel başka bir örneği de `:perc_bell` sesini rasgele
+bekleme ve hız değerleri ile tekrarlayan lanetli ziller örneğidir:
 
 ```
 loop do
@@ -62,9 +69,9 @@ end
 
 ## Random cutoff
 
-Another fun example of randomisation is to modify the cutoff of a
-synth randomly. A great synth to try this out on is the `:tb303`
-emulator:
+Eğlenceli başka bir rastgeleleştirme örneği ise bir synth 'in
+sesinin kesme zamanını değiştirmektir. Bunu deneyebileceğimiz
+güzel synthlerden biri `:tb303` emulatörüdür.
 
 ```
 use_synth :tb303
@@ -75,14 +82,15 @@ loop do
 end
 ```
 
-## Random seeds
+## Rastgele seed ‘ler
 
-So, what if you don't like this particular sequence of random numbers
-Sonic Pi provides? Well it's totally possible to choose a different
-starting point via `use_random_seed`. The default seed happens to be
-0, so choose a different seed for a different random experience!
+Peki Sonic Pi ın size sunduğu bu sıralanmış rastgele numaraları
+beğenmezseniz ne olacak? Tamam, `use_random_seed` ile başka bir
+başlangıç noktası seçebilmemiz tamamen mümkün. Varsayılan
+seediniz 0 dır, yani farklı bir seed seçerseniz başka bir
+deneyiminiz olur!
 
-Consider the following:
+Mesela bu örneğe bir bakın:
 
 ```
 5.times do
@@ -91,8 +99,9 @@ Consider the following:
 end
 ```
 
-Every time you run this code, you'll hear the same sequence of 5
-notes. To get a different sequence simply change the seed:
+Bu kodu her çalıştırdığınızda, sıralanmış aynı 5 notayı
+duyarsınız. Farklı bir sıra duymak için basit bir şekilde
+seed imizi değiştirebiliriz:
 
 ```
 use_random_seed 40
@@ -102,28 +111,28 @@ use_random_seed 40
 end
 ```
 
-This will produce a different sequence of 5 notes. By changing the seed
-and listening to the results you can find something that you like - and
-when you share it with others, they will hear exactly what you heard
-too.
+Bu bize farklı bir sıra verir. Seed leri değiştirerek ve
+dinleyerek bir seed de karar kılabilirsiniz ve bu kodu biri
+ile paylaştığınızda o da aynı şeyi duyar.
 
-Let's have a look at some other useful random functions.
+Bir de diğer işe yarayan rastgele fonksyonlarına bakalım.
 
 
-## choose
+## choose     (seç)
 
-A very common thing to do is to choose an item randomly from a list of
-known items. For example, I may want to play one note from the
-following: 60, 65 or 72. I can achieve this with `choose` which lets
-me choose an item from a list. First, I need to put my numbers in a list
-which is done by wrapping them in square brackets and separating them
-with commas: `[60, 65, 72]`. Next I just need to pass them to `choose`:
+Çok yaygın şeylerden biri bir listeden bir şey seçmektir. Mesela,
+bu notalardan birini seçmek isteyebilirim: 60, 65 veya 72. Bir
+listeden bir şey seçmemi yarayan `choose` fonksiyonu ile bunu
+yapabilirim. İlk olarakbir liste oluşturmalıyım. Bunu köşeli
+parantezlerin içine değerler koyup bu değerleri virgül ile
+ayırarak yapabilirim:`[60, 65, 72]`. Sonrasında ise basitçe bunları
+`choose` fonksiyonuna vermeliyim:
 
 ```
 choose([60, 65, 72])
 ```
 
-Let's hear what that sounds like:
+Nasıl duyuluyor bir dinleyelim:
 
 ```
 loop do
@@ -134,12 +143,12 @@ end
 
 ## rrand
 
-We've already seen `rrand`, but let's run over it again. It returns a
-random number between two values exclusively. That means it will never
-return either the top or bottom number - always something in between the
-two. The number will always be a float - meaning it's not a whole number
-but a fraction of a number. Examples of floats returned by
-`rrand(20, 110)`:
+`rrand` ı çoktan görmüştük ama bir daha bakalım. Sadece iki değer arasında
+bir değer veriyor. Bu max değeri veya min değeri asla vermeyeceği
+anlamına geliyor(sadece iki değer arasındaki değerleri veriyor).
+Numaralar her zaman küsüratlı yani tam bir sayı olmadığı anlamına
+geliyor. `rrand(20, 110)` fonksiyonunun verdiği küsüratlı sayılar
+örnekleri:
 
 * 87.5054931640625
 * 86.05255126953125
@@ -147,11 +156,11 @@ but a fraction of a number. Examples of floats returned by
 
 ## rrand_i
 
-Occasionally you'll want a whole random number, not a float. This is
-where `rrand_i` comes to the rescue. It works similarly to `rrand`
-except it may return the min and max values as potential random values
-(which means it's inclusive rather than exclusive of the
-range). Examples of numbers returned by `rrand_i(20, 110)` are:
+Bazen küsüratsız bir sayı elde etmek isteyebiliriz. Bu durumda
+`rrand_i` fonksiyonu bizi kurtarıyor. `rrand` fonksiyonu gibi çalışıyor
+ama min ve max değerlerini de rastgele numaralar olacak şekilde
+verebiliyor. `rrand_i(20, 110)` fonksiyonunun verdiği değerler örneğin
+bunlar olabiliyor:
 
 * 88
 * 86
@@ -159,10 +168,10 @@ range). Examples of numbers returned by `rrand_i(20, 110)` are:
 
 ## rand
 
-This will return a random float between 0 (inclusive) and the max
-value you specify (exclusive). By default it will return a value
-between 0 and one. It's therefore useful for choosing random `amp:`
-values:
+Bu, 0 (dahil) ile belirttiğiniz maksimum değer (hariç) arasında
+rastgele bir değişken döndürür. Varsayılan olarak 0 ile 1 arasında
+bir değer verir. Bu yüzden rastgele `amp:`değerlerini almak için
+kullanışlıdır:
 
 ```
 loop do
