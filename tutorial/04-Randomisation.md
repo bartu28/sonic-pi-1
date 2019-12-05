@@ -7,11 +7,6 @@ kullanmaktır. Sonic Pi, müziğinize rastgele sayılar koymanızı sağlayan
 fonksiyonlar bulundurur, ama bunu kullanmaya başlamadan önce sizi şok
 edebilecek bir gerçek: Sonic Pi ’de *rasgele tamamen rastgele değil*.
 Ama bu ne demek oluyor? Tamam, bir göz atalım.
-A great way to add some interest into your music is using some random
-numbers. Sonic Pi has some great functionality for adding randomness to
-your music, but before we start we need to learn a shocking truth: in
-Sonic Pi *random is not truly random*. What on earth does this mean?
-Well, let's see.
 
 ## Tekrarlanabilirlik
 
@@ -48,12 +43,6 @@ Evet! Sonunda rasgele bir şey. *run* içindeki bir rasgele fonksiyonu hep
 rasgele değerler vermeye değer verir. Ama bir sonraki çalıştırmada
 yine aynı değerleri verir ve aynı duyulur. Bu her "run" tuşuna
 bastığımızda zamanda geri gidip tekrar basmışız gibi olur.
-Yes! It finally sounds random. Within a given *run* subsequent calls
-to random functions will return random values. However, the next run
-will produce exactly the same sequence of random values and sound
-exactly the same. It's as if all Sonic Pi code went back in time to
-exactly the same point every time the Run button was pressed. It's the
-Groundhog Day of music synthesis!
 
 ## Lanetli Ziller
 
@@ -67,7 +56,7 @@ loop do
 end
 ```
 
-## Random cutoff
+## Rastgele kasme
 
 Eğlenceli başka bir rastgeleleştirme örneği ise bir synth 'in
 sesinin kesme zamanını değiştirmektir. Bunu deneyebileceğimiz
