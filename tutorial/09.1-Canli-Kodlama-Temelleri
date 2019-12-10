@@ -1,0 +1,111 @@
+9.1 Canlı Kodlama Temelleri
+
+# Canlı Kodlama
+
+Gerçekten eğlenmeye yetecek kadar şey öğrendik. Bu bölümde önceki 
+bütün bölümlerdeki bilgileri kullanarak müzik yapacağız ve bunları
+canlı performanslara çevireceğiz. Bunun için 3 ana malzememiz var: 
+
+* Ses çıkartabilen kodlar yazabilmek - TAMAM!
+* Fonksiyon yazabilmek - TAMAM!
+* İsimli iş parçacıkları kullanabilmek - TAMAM!
+
+Peki, başlayalım o zaman. İlk canlı sesimizi kodlayalım. Öncelikle 
+çalmak istediğimiz şeyi içeren bir fonksiyona ihtiyacımız var. Basit
+bir şekilde başlayalım. Aynı zamanda o fonksiyonu sürekli çağıran bir
+döngüye de ihtiyacımız var:
+
+```
+define :my_loop do
+  play 50
+  sleep 1
+end
+
+in_thread(name: :looper) do
+  loop do
+    my_loop
+  end
+end
+```
+
+Bu sana biraz karmaşık geldiyse, fonskiyonlar ve iş parçacıkları 
+bölümlerini tekrar okumanı tavsiye ederim. Bunlara hakim olduktan 
+sonra o kadar da karmaşık gelmeyecektir.
+
+Şu an elimizde olan şey 50 notasını çalıp bir beat lik uyuyan bir
+fonksiyon. Sonra `my_loop` u sürekli çağıran `:looper` adında bir
+iş parçacığı tanımladık.
+
+Eğer bu kodu çalıştırırsan, sürekli 50 notasını duyacaksındır.
+
+## İşleri biraz değiştirmek
+
+İşte eğlence tam olarak burada başlıyor. Kodun hala çalışıyorken 50 
+değerini, mesela 55 diye değiştir. Sonra tekrar Çalıştır  butonuna
+bas. Vay canına! Değişti! Canlı bir şekilde!
+
+Başka bir tabaka eklemedi çünkü iş parçacığımız bir isimle tanımlı 
+ve her isim sadece bir kere çalışabiliyor. Aynı zamanda, ses değişti 
+çünkü fonksiyonu tekrardan tanımladık. `:my_loop` fonksiyonuna yeni
+bir tanım verdik. `:looper` iş parçacığı döngüsüne devam ederken 
+yeniden tanımlandırdığımız bu fonksiyonu çağırmış oldu.
+
+Tekrar değiştirmeyi dene, notayı, uyku süresini değiştir. Mesela 
+`use_synth` kullansak nasıl olur? Örneğin, şununla değiştir:
+
+```
+define :my_loop do
+  use_synth :tb303
+  play 50, release: 0.3
+  sleep 0.25
+end
+```
+
+Şimdi kulağa oldukça ilgi çekici geliyor, ama biraz daha
+geliştirebiliriz. Aynı notayı tekrar tekrar çalmaktansa, bir akort
+çalmayı dene:
+
+```
+define :my_loop do
+  use_synth :tb303
+  play chord(:e3, :minor), release: 0.3
+  sleep 0.5
+end
+```
+
+O akorttan rastgele notalar çalalım:
+
+```
+define :my_loop do
+  use_synth :tb303
+  play choose(chord(:e3, :minor)), release: 0.3
+  sleep 0.25
+end
+```
+
+Ya da rastgele cutoff değerleri kullanalım:
+
+```
+define :my_loop do
+  use_synth :tb303
+  play choose(chord(:e3, :minor)), release: 0.2, cutoff: rrand(60, 130)
+  sleep 0.25
+end
+```
+
+Son olarak, davul ekleyelim:
+
+```
+define :my_loop do
+  use_synth :tb303
+  sample :drum_bass_hard, rate: rrand(0.5, 2)
+  play choose(chord(:e3, :minor)), release: 0.2, cutoff: rrand(60, 130)
+  sleep 0.25
+end
+```
+
+İşte şimdi işler heyecan verici olmaya başladı!
+
+Ama, hemen fonksiyonlarla ve iş parçacıklarıyla canlı kodlamaya başlamadan
+önce Sonic Pi'da kodlama şeklini sonsuza kadar değiştirecek olan bir 
+sonraki bölüm `live_loop` u oku...
