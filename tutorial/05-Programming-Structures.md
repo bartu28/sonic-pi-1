@@ -1,14 +1,13 @@
-5 Programming Structures
+5 Programlama yapıları
 
-# Programming Structures
+# Programlama yapıları
 
-Now that you've learned the basics of creating sounds with `play` and
-`sample` and creating simple melodies and rhythms by `sleep`ing between
-sounds, you might be wondering what else the world of code can offer
-you...
+Artık deneyerek ve örnekle ses yaratmanın, sesler arasında bekleyerek basit
+melodiler ve ritimler yaratmanın temellerini öğrendiğinize göre, kod
+dünyasının size başka neler sunabileceğini merak ediyor olabilirsiniz...
 
-Well, you're in for an exciting treat! It turns out that basic
-programming structures such as looping, conditionals, functions and
-threads give you amazingly powerful tools to express your musical ideas.
+Evet, heyecan verici bir şey için var! Döngü, koşul, fonksiyon ve iş
+parçacığı gibi temel programlama yapılarının, müzikal fikirlerinizi
+ifade etmeniz için size inanılmaz güçlü araçlar sağladığı ortaya çıktı.
 
-Let's get stuck in with the basics...
+Temellere bir bakalım...
