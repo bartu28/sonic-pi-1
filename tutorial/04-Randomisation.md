@@ -5,15 +5,15 @@
 Müziğinizi ilgi çekici yapma yollarından biri de bazı rastgele sayılar
 kullanmaktır. Sonic Pi, müziğinize rastgele sayılar koymanızı sağlayan
 fonksiyonlar bulundurur, ama bunu kullanmaya başlamadan önce sizi şok
-edebilecek bir gerçek: Sonic Pi ’de *rasgele tamamen rastgele değil*.
+edebilecek bir gerçek: Sonic Pi ’de *rastgele tamamen rastgele değil*.
 Ama bu ne demek oluyor? Tamam, bir göz atalım.
 
 ## Tekrarlanabilirlik
 
 `rrand` fonksiyonu çok işlevsel bir rasgele fonksiyonudur. Bu fonksiyon
 2 değer arasında rastgele bir değer verir. Bir minimum min ve bir
-maksimum max. (rrand rasgele için bir kısaltmadır). Şimdiki değer
-arasında rasgele bir nota çalmayı deneyelim:
+maksimum max. (rrand rastgele için bir kısaltmadır). Şimdiki değer
+arasında rastgele bir nota çalmayı deneyelim:
 
 ```
 play rrand(50, 95)
@@ -25,9 +25,9 @@ senin de aldığın rasgele nota aynı mı? Burada bir gariplik var. Kodu
 tekrar dene. Ne? tekrar 83.7527? Bu rasgele olamaz!
 
 Cevap şudur ki bu rasgele değil, bu pseudo-random(“random” rasgele
-demek). Sonic Pi sana rasgele bir numarayı tekrarlanabilir bir şekilde
+demek). Sonic Pi sana rastgele bir numarayı tekrarlanabilir bir şekilde
 verir. Bu senin kodladığın bir müziği herkesin aynı şekilde dinlemesini
-sağlar. Rasgele bir değer kullanmış olsan bile.
+sağlar. Rastgele bir değer kullanmış olsan bile.
 
 Tabiki eğer ‘rasgele’ bir şey her zaman `83.7527` olacaksa bu ilgi çekici
 olmaz. Neyseki bu bunun için geçerli değil:
@@ -39,14 +39,14 @@ loop do
 end 
 ```
 
-Evet! Sonunda rasgele bir şey. *run* içindeki bir rasgele fonksiyonu hep
-rasgele değerler vermeye değer verir. Ama bir sonraki çalıştırmada
+Evet! Sonunda rastgele bir şey. *run* içindeki bir rasgele fonksiyonu hep
+rastgele değerler vermeye değer verir. Ama bir sonraki çalıştırmada
 yine aynı değerleri verir ve aynı duyulur. Bu her "run" tuşuna
 bastığımızda zamanda geri gidip tekrar basmışız gibi olur.
 
 ## Lanetli Ziller
 
-Rasgeleleştirmenin güzel başka bir örneği de `:perc_bell` sesini rasgele
+Rastgeleleştirmenin güzel başka bir örneği de `:perc_bell` sesini rastgele
 bekleme ve hız değerleri ile tekrarlayan lanetli ziller örneğidir:
 
 ```
@@ -171,26 +171,29 @@ end
 
 ## rand_i
 
-Similar to the relationship between `rrand_i` and `rrand`, `rand_i` will
-return a random whole number between 0 and the max value you specify.
+`rrand_i` ve `rrand`' a benzer olarak, `rand_i` belirttiğiniz maksimum
+numara ile 0 arasında ratgele bir sayı verir.
 
-## dice
+## zar
 
-Sometimes you want to emulate a dice throw - this is a special case of
-`rrand_i` where the lower value is always 1. A call to `dice` requires
-you to specify the number of sides on the dice. A standard dice has 6
-sides, so `dice(6)` will act very similarly - returning values of either
-1, 2, 3, 4, 5, or 6. However, just like fantasy role-play games, you
-might find value in a 4 sided dice, or a 12 sided dice, or a 20 sided
-dice - perhaps even a 120 sided dice!
+Bazen bir zar atışını simüle etmek istersiniz - bu `rrand_i` 'nin en
+düşük değerin 1 olduğu bir özel durumdur. zarımızın yüzlerindeki değerleri
+belirlemek için,`dice`'a bir tanımlatma yapmamız gerekir. Standart bir
+zarın 6 yüzü olduğunu düşünürsek, `dice(6)` oldukça benzer sonuçlar
+vereceğini - 1, 2, 3, 4, 5 ya da 6. Ama tıpkı masa role-play oyunlarında
+olduğu gibi 4, 12, 20 hatta 120 yüzü olan bir zar simüle edebiliriz.
 
 ## one_in
 
-Finally you may wish to emulate throwing the top score of a dice such
-as a 6 in a standard dice. `one_in` therefore returns true with a
-probability of one in the number of sides on the dice. Therefore
-`one_in(6)` will return true with a probability of 1 in 6 or false
-otherwise. True and false values are very useful for `if` statements
-which we will cover in a subsequent section of this tutorial.
+Son olarak, 6 yüzlü bir zarın 6 değerini vermesi gibi bir zarın en
+yüksek skoru vermesini simüle etmek isteyebilirsiniz. `one_in` bu durumda 
 
-Now, go and jumble up your code with some randomness!
+Son olarak, standart bir zardaki 6 gibi bir zarın en yüksek puanını
+atmaya benzetmek isteyebilirsiniz. Bu nedenle `one_in`, zardaki taraf
+sayısındaki olasılık ile gerçek olur. Bu nedenle `one_in (6)`, 6'da
+1'lik bir olasılıkla doğru, aksi takdirde yanlış olur. Doğru ve yanlış
+değerler bu yazının sonraki bölümünde ele alacağımız “if” ifadeleri
+için çok faydalıdır.
+
+
+Artık rasgelelikle kodunuzu coşturabilirsiniz!
