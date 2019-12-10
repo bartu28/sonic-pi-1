@@ -1,0 +1,93 @@
+9.3 Birden Fazla Canlı Döngü
+
+# Birden Fazla Canlı Döngü
+
+Şu canlı döngüye bir bak:
+
+```
+live_loop :foo do
+  play 50
+  sleep 1
+end
+```
+
+Adının neden `:foo` olduğunu merak etmiş olabilirsin. Bir isim koymak 
+önemli çünkü bu onu diğer canlı döngülerden farklı kılıyor.
+
+*Aynı isimde iki tane canlı döngü asla aynı anda çalamaz*.
+
+Yani birden fazla canlı döngü kullanmak istiyorsak onlara farklı 
+isimler vermeliyiz:
+```
+live_loop :foo do
+  use_synth :prophet
+  play :c1, release: 8, cutoff: rrand(70, 130)
+  sleep 8
+end
+
+live_loop :bar do
+  sample :bd_haus
+  sleep 0.5
+end
+```
+
+Şimdi tüm live loopları birbirinden bağımsız bir şekilde güncelleyip 
+değiştirebilirsin, ve bu sorunsuz çalışacaktır.
+
+## Canlı Döngüleri Senkronize Etmek
+
+Fark etmiş olabileceğin bir şey canlı döngülerin otomatik olarak önceki 
+bölümlerde öğrendiğimiz iş parçacığı ve kuyruk mekanizmalarıyla çalıştığı.
+Canlı döngü her döngüye girişinde, canlı döngünün adında yeni bir `cue`
+yani kuyruk oluşturuyor. Biz de bu kuyrukları `sync` yani senkronize edip
+döngülerimizin senkronize olduğundan emin olabiliriz.
+
+Bu kötü bir şekilde senkronize edilen koda bir göz at:
+
+```
+live_loop :foo do
+  play :e4, release: 0.5
+  sleep 0.4
+end
+
+live_loop :bar do
+  sample :bd_haus
+  sleep 1
+end
+```
+
+Şimdi bu zamanlamayı nasıl düzelteceğimize bakalım. Öncelikle, `:foo`
+döngüsüne `0.5` lik bir uyku süresi koyalım:
+
+```
+live_loop :foo do
+  play :e4, release: 0.5
+  sleep 0.5
+end
+
+live_loop :bar do
+  sample :bd_haus
+  sleep 1
+end
+```
+
+Henüz bitirmedik - beat'lerin tam olarak hizaya gelmediğini
+farketmişsindir. Çünkü bu döngülerin faz farkı var. Bunları 
+birbirleriyle senkronize edip bu sorunu düzeltelim:
+
+```
+live_loop :foo do
+  play :e4, release: 0.5
+  sleep 0.5
+end
+
+live_loop :bar do
+  sync :foo
+  sample :bd_haus
+  sleep 1
+end
+```
+
+Çok güzel, her şey senkronize oldu.
+
+Şimdi de sen canlı döngülerle performansını sergile!
