@@ -2,23 +2,7 @@
 
 # Time State
 
-Often it is useful to have information that is *shared across multiple
-threads or live loops*. For example, you might want to share a notion of
-the current key, BPM or even more abstract concepts such as the current
-'complexity' (which you'd potentially interpret in different ways across
-different threads). We also don't want to lose any of our existing
-determinism guarantees when doing this. In other words, we'd still like
-to be able to share code with others and know exactly what they'll hear
-when they run it. At the end of Section 5.6 of this tutorial we briefly
-discussed why we *should not use variables to share information across
-threads* due to a loss of determinism (in turn due to race conditions).
+Genellikle, birden fazla işte  veya canlı döngüde paylaşılan bilgilerin olması yararlıdır. Örneğin, mevcut anahtar, BPM veya mevcut 'karmaşıklık' (hatta farklı başlıklar arasında farklı şekillerde potansiyel olarak yorumlayacağınız) gibi daha soyut kavramları paylaşmak isteyebilirsiniz. Aynı zamanda mevcut "determinizmimizi" de kaybetmek istemiyoruz, bunu yaparken de garanti veriyoruz. Başka bir deyişle, kodu başkalarıyla paylaşabilmeyi ve çalıştırdıklarında tam olarak ne duyacaklarını bilmek istiyoruz. Bu eğitimin yani 5.6'ıncı bölümünün sonunda, determinizm kaybı nedeniyle (yarış koşulları nedeniyle), konuları paylaşmak için değişkenleri neden kullanmamamız gerektiğine kısaca değindik.
 
-Sonic Pi's solution to the problem of easily working with global
-variables in a deterministic way is through a novel system it calls Time State. This
-might sound complex and difficult (in fact, in the UK, programming with
-multiple threads and shared memory is typically a university level
-subject). However, as you'll see, just like playing your first note,
-*Sonic Pi makes it incredibly simple to share state across threads*
-whilst still keeping your programs *thread-safe and deterministic.*.
-
+Sonic Pi'nin küresel değişkenlerle belirleyici bir şekilde kolayca çalışabilme problemine çözümü, "Time State" adını verdiği yeni bir sistemdir. Bu kulağa karmaşık ve zor gelebilir (aslında, İngiltere'de birden fazla iş için ve paylaşılan hafıza ile programlama tipik olarak üniversite düzeyinde bir konudur). Ancak, göreceğiniz gibi, ilk notunuzu çalmak gibi, Sonic Pi, programlarınızı güvenli ve kararlı bir şekilde tutarken aynı zamanda konuları paylaşmayı inanılmaz derecede kolaylaştırıyor.
 Meet `get` and `set`...
