@@ -7,8 +7,8 @@ sırada ne var? Bazen sadece Sonic Pi'nin sözdizimi ve ses sistemi içerisinde
 çalışmanın kısıtları heyecan verici olabilir ve sizi yeni bir yaratıcı pozisyona 
 getirebilir. Bununla birlikte, bazen kodu gerçek dünyaya atmak çok önemlidir. 
 İki ekstra şey istiyoruz:
-1. To be able to convert actions in the real world into Sonic Pi events to code with
-2. To be able to use Sonic Pi's strong timing model and semantics to control and manipulate objects in the real world
+1. Gerçek dünyadaki eylemleri Sonic Pi olaylarına dönüştürebilmek
+2. Sonic Pi'nin güçlü zamanlama modelini ve anlambilimini gerçek dünyadaki nesneleri kontrol etmek ve yönetmek için kullanabilmek
 
 Neyse ki 80'li yıllardan beri bu tür bir etkileşimi mümkün kılan bir protokol var 
 - MIDI. Klavyeler, denetleyiciler, sıralayıcılar ve hepsi MIDI'yi destekleyen pro ses 
