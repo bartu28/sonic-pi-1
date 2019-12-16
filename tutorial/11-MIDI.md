@@ -2,20 +2,18 @@
 
 # MIDI
 
-Once you've mastered converting code to music, you might wonder - what's
-next? Sometimes the constraints of working purely within Sonic Pi's
-syntax and sound system can be exciting and put you into a new creative
-position. However, sometimes it is essential to break out of the code
-into the real world. We want two extra things:
-
+Bir kere kodu müziğe dönüştürmede ustalaşınca merak edebilirsin - 
+sırada ne var? Bazen sadece Sonic Pi'nin sözdizimi ve ses sistemi içerisinde 
+çalışmanın kısıtları heyecan verici olabilir ve sizi yeni bir yaratıcı pozisyona 
+getirebilir. Bununla birlikte, bazen kodu gerçek dünyaya atmak çok önemlidir. 
+İki ekstra şey istiyoruz:
 1. To be able to convert actions in the real world into Sonic Pi events to code with
 2. To be able to use Sonic Pi's strong timing model and semantics to control and manipulate objects in the real world
 
-Luckily there's a protocol that's been around since the 80s that enables
-exactly this kind of interaction - MIDI. There's an incredible number of
-external devices including keyboards, controllers, sequencers, and pro
-audio software that all support MIDI. We can use MIDI to receive data
-and also use it to send data.
+Neyse ki 80'li yıllardan beri bu tür bir etkileşimi mümkün kılan bir protokol var 
+- MIDI. Klavyeler, denetleyiciler, sıralayıcılar ve hepsi MIDI'yi destekleyen pro ses 
+yazılımı dahil olmak üzere inanılmaz sayıda harici cihaz var. Veri almak için MIDI
+kullanabilir ve veri göndermek için de kullanabiliriz.
 
-Sonic Pi provides full support for the MIDI protocol enabling you to
-connect your live code to the real world. Let's explore it further...
+Sonic Pi, canlı kodunuzu gerçek dünyaya bağlamanızı sağlayan MIDI protokolü için tam destek sağlar. 
+Hadi daha detaylı araştıralım ...
