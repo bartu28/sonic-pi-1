@@ -1,0 +1,156 @@
+t = Time.now.to_i
+use_random_seed t
+bpm = rrand_i(80,160)
+use_bpm bpm
+set_volume! 1
+
+synthlist = [:beep, :blade, :chipbass, :dpulse, :dsaw, :fm, :piano, :pluck, :pretty_bell, :prophet, :pulse, :saw, :sine, :square, :subpulse, :supersaw, :tech_saws, :tri,]
+fxlist = [:band_eq, :bitcrusher, :bpf, :compressor, :distortion, :echo, :eq, :flanger, :gverb, :hpf, :ixi_techno, :krush, :level, :lpf, :mono, :nbpf, :nhpf, :nlpf, :nrbpf, :octaver, :pan, :panslicer, :pitch_shift, :rbpf, :reverb, :rhpf, :ring_mod, :rlpf, :slicer, :sound_out, :sound_out_stereo, :tanh, :tremolo, :vowel, :whammy, :wobble]
+
+define :rest do
+  sleep 0.25
+end
+
+define :player do |x|
+  play x, release: 0.3
+  rest
+end
+
+define :intro do
+  with_fx fxlist.choose do
+    use_synth synthlist.choose
+    player :e5
+    player :d5
+    player :e5
+    rest
+    player :b4
+    player :a4
+    player :b4
+    rest
+    player :gs4
+    player :f4
+    player :gs4
+    rest
+    player :gs4
+    rest
+    player :f4
+    rest
+    player :e4
+    rest
+  end
+end
+
+
+define :introrpt1 do
+  with_fx fxlist.choose do
+    use_synth synthlist.choose
+    player :f4
+    rest
+    player :f4
+    player :e4
+    player :d4
+    rest
+    player :d4
+    rest
+    player :f4
+    player :e4
+    player :e4
+    3.times do
+      rest
+    end
+    player :gs4
+    player :a4
+    player :gs4
+    player :a4
+    player :b4
+    rest
+  end
+end
+
+
+define :introrpt2 do
+  with_fx fxlist.choose do
+    use_synth synthlist.choose
+    play :e4, release: 1.1
+    4.times do
+      rest
+    end
+    play :gs4, release: 1.1
+    4.times do
+      rest
+    end
+    play :b4, release: 1.1
+    4.times do
+      rest
+    end
+    play :e5, release: 0.6
+    rest
+    rest
+    play :e5, release: 1.1
+    4.times do
+      rest
+    end
+  end
+end
+
+define :main do
+  use_synth synthlist.choose
+  play :e5, release: 1.1
+  sleep 1
+  play :b4, release: 1.6
+  sleep 1.5
+  player :c5
+  player :d5
+  player :c5
+  player :b4
+  play :a4, release: 1.6
+  sleep 1.5
+end
+
+define :mainrpt1 do
+  player :gs4
+  rest
+  player :gs4
+  player :f4
+  player :gs4
+  rest
+  player :gs4
+  rest
+  player :a4
+  rest
+  play:b4, release: 1.1
+  sleep 1
+  player :gs4
+  player :a4
+  player :gs4
+  player :a4
+  play:b4, release: 0.6
+  sleep 0.5
+end
+
+define :mainrpt2 do
+  play:gs4, release: 1.1
+  sleep 1
+  play:f4, release: 1.1
+  sleep 1
+  play:d4, release: 0.6
+  sleep 0.5
+  play:e4, release: 1.1
+  sleep 1
+  player :b4
+  player :a4
+  player :gs4
+  play:f4, release: 0.6
+  sleep 0.25
+  play:e4, release: 0.6
+  sleep 0.5
+end
+
+intro
+introrpt1
+intro
+introrpt2
+main
+mainrpt1
+main
+mainrpt2
