@@ -1,0 +1,217 @@
+set_volume! 1
+use_bpm 80
+use_synth :saw
+phaseshigh = [[:c3, :c4, :g3, :c4 ], [:a2, :a3, :e3, :a3]]
+phaseslow = [[:c2, :c3, :g2, :c3 ], [:a1, :a2, :e2, :a2]]
+phaseslowshort = [[:c2, :c3, :g2, :c3 ], [:a1, :a2, :e2]]
+phases = []
+count = 0
+terminate = false
+
+
+define :main do
+  phases.each do |notes|
+    notes.each do |n|
+      with_fx :bitcrusher do
+        play n
+        sleep 0.5
+      end
+    end
+  end
+end
+
+
+define :melody do
+  s = play :e6, sustain: 2.1 ,release: 0.3, note_slide: 0.1, amp: 0.2
+  sleep 0.5
+  control s, note: :d6
+  sleep 0.5
+  control s, note: :c6
+  sleep 0.5
+  control s, note: :b5
+  sleep 0.5
+  control s, note: :a5
+end
+
+
+define :hihat do
+  sample :drum_cymbal_closed, start: 0.05, finish: 0.4, rate: 3, amp: 1.5
+end
+
+
+define :slowbeat do
+  15.times do
+    hihat
+    sleep 0.25
+  end
+  3.times do
+    hihat
+    sleep 0.25/3
+  end
+end
+
+
+define :fastbeat do
+  16.times do
+    hihat
+    sleep 0.25/2
+  end
+  4.times do
+    hihat
+    sleep 0.25
+  end
+  16.times do
+    hihat
+    sleep 0.25/4
+  end
+end
+
+
+in_thread do
+  phases = phaseshigh
+  4.times do
+    main
+    count += 1
+    if count == 2
+      in_thread do
+        use_synth :dsaw
+        sleep 0.5
+        melody
+      end
+    end
+  end
+ 
+  sleep 1.5
+  sample :perc_swoosh,  attack: 0, sustain: 0.25, release: 0,rate: 0.5, amp: 3
+  sleep 0.5
+ 
+  count = 0
+  phases = phaseslow
+  4.times do
+    if count == 3
+      phases = phaseslowshort
+    end
+    main
+    if count == 3
+      set_volume! 0
+      sleep 0.5
+      set_volume! 1
+    end
+    count += 1
+  end
+ 
+  count = 0
+  phases = phaseshigh
+  4.times do
+    if count == 0 or count == 2
+      in_thread do
+        use_synth :dsaw
+        sleep 0.5
+        melody
+      end
+    end
+    count += 1
+    main
+  end
+ 
+  count = 0
+  phases = phaseslow
+  8.times do
+    use_synth :square
+    if count==0 or count==2 or count==4 or count==6
+      in_thread do
+        with_fx :ixi_techno, mix: 0.2 do
+          sleep 0.5
+          play :a
+          sleep 0.5
+          play :a
+          sleep 0.5
+          play :g
+          sleep 0.5
+          play :e, release: 0.5
+          sleep 0.25
+          play :e, release: 0.5
+          sleep 0.25
+          play :e, release: 0.5
+          sleep 0.25
+          play :e, release: 0.5
+          sleep 0.25
+          play :e
+          sleep 0.5
+          play :g3
+        end
+      end
+      in_thread do
+        use_synth :dsaw
+        sleep 0.5
+        melody
+      end
+    end
+    if count==4 or count==6
+      in_thread do
+        slowbeat
+        fastbeat
+      end
+    end
+    count += 1
+    main
+  end
+ 
+  count = 1
+  use_synth :saw
+  phases = phaseshigh
+  4.times do
+    main
+    count -= 0.25
+    set_volume! count
+  end
+  terminate = true
+end
+
+
+in_thread do
+  sleep 8
+  8.times do
+    sample :drum_cymbal_closed
+    sleep 1
+  end
+end
+
+
+in_thread do
+  sleep 18
+  slowbeat
+  slowbeat
+  slowbeat
+  slowbeat
+  fastbeat
+  slowbeat
+  fastbeat
+  slowbeat
+end
+
+
+in_thread do
+  sleep 18
+  live_loop :boom do
+    sample :bd_boom, amp: 10
+    sleep 4
+    stop if terminate
+  end
+end
+
+in_thread do
+  sleep 18
+  sample :bd_mehackit, amp: 3
+end
+
+
+in_thread do
+  sleep 18
+  live_loop :drums do
+    sleep 1
+    sample :drum_snare_hard
+    sleep 1
+    stop if terminate
+  end
+end
