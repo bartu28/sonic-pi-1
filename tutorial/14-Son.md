@@ -11,7 +11,7 @@ Yardım edecek biri çıkacaktır
 Son olarak, yardım sistemine de göz atmanızı öneririm. Kılavuzda çünkü her şeyi anlatmadık ve ilginizi çekecek bir sürü bilginin olduğunu
 söyleyebiliriz.
 
-Eğlenmene bak ve bu eğlenceli arkadaşlarınla paylaş ve unutma:
+Eğlenmene bak ve bu eğlenceyi arkadaşlarınla paylaş ve unutma:
 
 *Hata değil sadece fırsatlar vardır.*
 
