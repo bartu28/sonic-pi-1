@@ -1,1 +1,1 @@
-# Teaching Live Coding with Help of Music on Sonic Pi
+# An Evaluation of Sonic Pi to Teach Programming to High School Students
